@@ -21,20 +21,40 @@ class MemoryGame {
   }
 
 checkIfPair(card1, card2) {
-    if (card1 === card2){
-      this.pairsGuessed++;
-      this.pairsClicked++
-      return true
-    } else {
-      this.pairsClicked++;
-      return false
-    }
+    this.pairsClicked ++;
+
+    if(card1 === card2) {
+      this.pairsGuessed ++;
+
+      return true;
+    } 
+
+    return false;
   }
+
   checkIfFinished() {
-    if(this.cards.length === 24){
-    return true
-    } else {
-    return false
+     if(this.checkIfWin()) {
+      return 'Winner'
+    } else if(this.checkIfLost()) {
+      return 'Lost'
+    } 
+
+    return false;
+  }
+
+  checkIfLost() {
+    if (this.pairsClicked === this.cards.length) {
+      return true;
     }
+    
+    return false;
+  }
+
+  checkIfWin() {
+    if (this.pairsGuessed === this.cards.length / 2) {
+      return true;
+    }
+    
+    return false;
   }
 }
